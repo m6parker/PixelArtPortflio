@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload and Download PNG Files</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.cdnfonts.com/css/public-pixel" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Pixel Art for Games</h1>
+
+        <div class="upload-section">
+            <h3>Upload a PNG File</h3>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <input type="file" id="fileInput" name="file" accept="image/png" required>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+
+        <div class="download-section">
+            <h2>Download PNG Files</h2>
+            <div id="fileList">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData();
+            formData.append('file', document.getElementById('fileInput').files[0]);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+                loadFiles();
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        function loadFiles() {
+            fetch('/files')
+            .then(response => response.json())
+            .then(files => {
+                const fileList = document.getElementById('fileList');
+                fileList.innerHTML = '';
+                files.forEach(file => {
+                    // Extract the filename from the path
+                    const fileName = file.path.split('/').pop();
+                    const fileElement = document.createElement('div');
+                    fileElement.className = 'file-item';
+                    fileElement.innerHTML = `
+                        <div class="file-info">
+                            <img src="/${fileName}" alt="${file.name}" class="file-preview">
+                            <span>${file.name}</span>
+                        </div>
+                        <a href="/${fileName}" download="${file.name}">Download</a>
+                    `;
+                    fileList.appendChild(fileElement);
+
+                    // select files
+                    fileElement.addEventListener('click', () => {fileElement.classList.toggle('selected');})
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        // Load files when the page loads
+        loadFiles();
+
+        
+    </script>
+</body>
+</html>
