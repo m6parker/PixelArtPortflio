@@ -24,6 +24,10 @@
             <div id="fileList">
             </div>
         </div>
+
+        <div class="delete-section">
+            <button id="delete-button">Delete</button>
+        </div>
     </div>
 
     <script>
@@ -74,6 +78,20 @@
         // Load files when the page loads
         loadFiles();
 
+        // function deleteFiles() {
+        //     fetch('/delete')
+        //     .then(response => response.json())
+        //     .then(files => {
+        //         const fileList = document.getElementById('fileList');
+        //         fileList.innerHTML = '';
+        //         files.forEach(file => {
+        //             if(file.classList.contains('selected')){console.log('delete ', file)}
+        //         });
+        //     })
+        //     .catch(error => console.error('Error:', error));
+        // }
+
+        // document.getElementById('delete-button').addEventListener('click', () => deleteFiles());
         
     </script>
 </body>

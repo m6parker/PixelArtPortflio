@@ -17,11 +17,11 @@ h1, h2 {
     color: #ff7cb3;
 }
 
-.upload-section, .download-section {
+.upload-section, .download-section, .delete-section {
     margin-bottom: 30px;
 }
 
-.upload-section form {
+.upload-section form, .delete-section {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -33,7 +33,7 @@ h1, h2 {
     border-radius: 4px;
 }
 
-.upload-section button {
+.upload-section button, .delete-section button {
     padding: 10px;
     background-color: #ffa1d0;
     color: #fff;
@@ -42,7 +42,7 @@ h1, h2 {
     cursor: pointer;
 }
 
-.upload-section button:hover {
+.upload-section button:hover, .delete-section button:hover {
     background-color: #ff7cb3;
 }
 

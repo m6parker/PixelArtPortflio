@@ -60,3 +60,15 @@ app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
 
+//delete
+// app.delete('/delete', delete('file'), (req, res) => {
+//     const { originalname, path: filePath } = req.file;
+
+//     db.run('DELETE from files (name, path) VALUES (?, ?)', [originalname, filePath], function(err) {
+//         if (err) {
+//             return console.log(err.message);
+//         }
+//         console.log(`A row has been deleted with rowid ${this.lastID}`);
+//         res.send('File deleted successfully');
+//     });
+// });
