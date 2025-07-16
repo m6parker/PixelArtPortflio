@@ -9,25 +9,11 @@
 </head>
 <body>
     <div class="container">
-        <h1>Pixel Art by Mary</h1>
+        <div class="left-menu">
+            <h1>Pixel Art by Mary</h1>
 
-        <div class="upload-section">
-            <h4>Upload a PNG File</h4>
-            <form id="uploadForm" enctype="multipart/form-data">
-                <input type="file" id="fileInput" name="file" accept="image/png" required>
-                <select id="categorySelect" name="category" class="category-select">
-                    <option value="sprites">Sprite</option>
-                    <option value="spritesheets">Spritesheet</option>
-                    <option value="tilesets">Tileset</option>
-                    <option value="ui">UI</option>
-                    <option value="assetPacks">Asset Pack</option>
-                </select>
-                <button type="submit">Upload</button>
-            </form>
-        </div>
-
-        <div class="download-section">
-            <h3>Download PNG Files:</h3>
+        <!-- <div class="download-section"> -->
+            <!--<h3>Download PNG Files:</h3>-->
             <div class="tabs">
                 <div class="tab-button selected" onclick="openTab(event, 'sprites')">Sprites</div>
                 <div class="tab-button" onclick="openTab(event, 'spritesheets')">Spritesheets</div>
@@ -35,6 +21,27 @@
                 <div class="tab-button" onclick="openTab(event, 'ui')">UI</div>
                 <div class="tab-button" onclick="openTab(event, 'assetPacks')">Asset Packs</div>
             </div>
+
+                        
+            <div class="upload-section">
+                <h4>Upload a PNG File</h4>
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <input type="file" id="fileInput" name="file" accept="image/png" required>
+                    <select id="categorySelect" name="category" class="category-select">
+                        <option value="sprites">Sprite</option>
+                        <option value="spritesheets">Spritesheet</option>
+                        <option value="tilesets">Tileset</option>
+                        <option value="ui">UI</option>
+                        <option value="assetPacks">Asset Pack</option>
+                    </select>
+                    <button type="submit">Upload</button>
+                </form>
+            </div>
+            
+        </div>
+
+        <div class="download-section">
+
             <div id="sprites" class="tab-content"></div>
             <div id="spritesheets" class="tab-content" style="display: none;"></div>
             <div id="tilesets" class="tab-content" style="display: none;"></div>

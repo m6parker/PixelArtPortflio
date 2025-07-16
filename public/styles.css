@@ -1,4 +1,4 @@
-/*
+/* /*
 :root {
   --primary-color: darkseagreen;
   --secondary-color: #779377;
@@ -12,9 +12,8 @@
   --color-3: #fff;
   --color-4: #eb5d98;
 } 
-*/
 
-:root{
+/* :root{
   --primary-color: #e0e0e0;
   --secondary-color: #b6b6b6;
   --color-3: #fff;
@@ -71,17 +70,6 @@ select{
     background-color:  var(--primary-color);
 }
 
-.tab-content {
-    width: 100%;
-    display: grid;
-    grid-template-rows: repeat(auto-fit, 1fr);
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    /* border: 1px solid lime; */
-    padding: 10px;
-    background-color:  var(--color-4);
-}
-
 .tabs{
     display: flex;
     flex-direction: row;
@@ -104,11 +92,21 @@ select{
     color:#6e6e6e;
 }
 
+*/
+
+
+.tab-content {
+    width: 100%;
+    display: grid;
+    grid-template-rows: repeat(auto-fit, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 10px;
+}
 
 .file-item {
     justify-content: space-between;
     align-items: center;
-    border: 2px solid #ddd;
     border-radius: 4px;
     cursor: pointer;
     flex-direction: column;
@@ -154,3 +152,99 @@ select{
 .file-item span{
     justify-content: space-evenly;
 }
+
+
+
+:root{
+  --color-1: #e9d7c0;
+  --color-2: #daa38f;
+  --color-3: #9b7d61;
+  --color-4: #92ada4;
+  --color-5: #fed8a6;
+} 
+
+html, body {
+    height: 99%;
+    background-color: var(--color-4);
+    font-family: 'Devin Chavez Font', sans-serif;
+}
+
+.container{
+    flex: 1;
+    height: 100%;
+    display: flex;
+    padding: 5px;;
+
+}
+
+.left-menu{
+    cursor: pointer;
+    flex-direction: column;
+    height: 50%;
+    display: flex;
+    width: 250px;
+}
+
+.upload-section{
+    background-color: var(--color-2);
+    height: 500px;
+    border-radius: 10px;
+    position: relative;
+    margin-right: 15px;
+    padding: 3px;
+    font-size: 1rem;
+}
+
+form select, form input, form button{
+    padding: 10px;
+    width: 100%;
+}
+
+form button{
+    background-color: #ac7f6f;
+    border-radius: 0 0 10px 10px;
+    border: 1px solid #ac7f6f;
+    cursor: pointer;
+    font-family: 'Devin Chavez Font', sans-serif;
+    bottom: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.download-section{
+    background-color: var(--color-1);
+    border-radius: 15px;
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.tabs{
+    height: 100%;
+
+}
+
+.tab-content{
+    padding: 15px;
+}
+
+.tabs div{
+    margin: 5px 0 5px 5px;
+    background-color: var(--color-5);
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+}
+
+.tabs .selected{
+    background-color: var(--color-1);
+}
+
+.tabs div:hover{
+    color:#6e6e6e;
+}
+
+form button:hover{
+    border: 1px solid black;
+}
+
