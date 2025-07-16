@@ -1,6 +1,30 @@
+/*
+:root {
+  --primary-color: darkseagreen;
+  --secondary-color: #779377;
+  --color-3: #fff;
+  --color-4: #c6ebc6;
+}
+
+:root{
+  --primary-color: #ffa1d0;
+  --secondary-color: #ff7cb3;
+  --color-3: #fff;
+  --color-4: #eb5d98;
+} 
+*/
+
+:root{
+  --primary-color: #e0e0e0;
+  --secondary-color: #b6b6b6;
+  --color-3: #fff;
+  --color-4: #636363;
+} 
+
+
 body {
     font-family: 'Devin Chavez Font', sans-serif;
-    background-color: #f4f4f4;
+    background-color: var(--primary-color);
     margin: 0;
     padding: 0;
 }
@@ -11,7 +35,7 @@ body {
 }
 
 h1, h2 {
-    color: #ff7cb3;
+    color: var(--color-4);
 }
 
 select{
@@ -36,15 +60,15 @@ select{
 
 .upload-section button {
     padding: 10px;
-    background-color: #ffa1d0;
+    background-color:  var(--primary-color);
     color: #fff;
-    border: none;
+    border: 1px solid var(--color-4);
     border-radius: 4px;
     cursor: pointer;
 }
 
 .upload-section button:hover {
-    background-color: #ff7cb3;
+    background-color:  var(--primary-color);
 }
 
 .tab-content {
@@ -55,8 +79,7 @@ select{
     gap: 8px;
     /* border: 1px solid lime; */
     padding: 10px;
-    background-color: #ffa1d0;
-
+    background-color:  var(--color-4);
 }
 
 .tabs{
@@ -69,12 +92,12 @@ select{
     margin: 10px 10px 0 10px;
     padding: 10px;
     cursor: pointer;
-    background-color: #ff7cb3;
+    background-color: var(--color-3);;
     width: 15rem;
 }
 
 .tabs .selected{
-    background-color: #ffa1d0;
+    background-color: var(--color-4);;
 }
 
 .tabs div:hover{
