@@ -3,31 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload and Download PNG Files</title>
+    <title>Game Asset Library</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.cdnfonts.com/css/public-pixel" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>Pixel Art for Games</h1>
+        <h1>Pixel Art by Mary</h1>
 
         <div class="upload-section">
-            <h3>Upload a PNG File</h3>
+            <h4>Upload a PNG File</h4>
             <form id="uploadForm" enctype="multipart/form-data">
                 <input type="file" id="fileInput" name="file" accept="image/png" required>
                 <button type="submit">Upload</button>
             </form>
+
+            <!--<div class="delete-section">
+                <button id="delete-button">Delete</button>
+            </div>-->
         </div>
+
 
         <div class="download-section">
-            <h2>Download PNG Files</h2>
-            <div id="fileList">
+            <h3>Download PNG Files:</h3>
+            <div class="tabs">
+                <div class="tab-button selected" onclick="openTab(event, 'sprites')">Sprites</div>
+                <div class="tab-button" onclick="openTab(event, 'spritesheets')">Spritesheets</div>
+                <div class="tab-button" onclick="openTab(event, 'tilesets')">Tilesets</div>
+                <div class="tab-button" onclick="openTab(event, 'assetPacks')">Asset Packs</div>
             </div>
+            <div id="sprites" class="tab-content"></div>
+            <div id="spritesheets" class="tab-content"></div>
+            <div id="tilesets" class="tab-content"></div>
+            <div id="assetPacks" class="tab-content"></div>
         </div>
 
-        <div class="delete-section">
-            <button id="delete-button">Delete</button>
-        </div>
     </div>
 
     <script>
@@ -52,19 +62,19 @@
             fetch('/files')
             .then(response => response.json())
             .then(files => {
-                const fileList = document.getElementById('fileList');
+                const fileList = document.getElementById('sprites');
                 fileList.innerHTML = '';
                 files.forEach(file => {
                     // Extract the filename from the path
                     const fileName = file.path.split('/').pop();
                     const fileElement = document.createElement('div');
                     fileElement.className = 'file-item';
-                    fileElement.innerHTML = `
-                        <div class="file-info">
-                            <img src="/${fileName}" alt="${file.name}" class="file-preview">
+                    fileElement.innerHTML = `<span>
+                        <img src="/${fileName}" alt="${file.name}" class="file-preview">
+                        <div class="file-options">
                             <span>${file.name}</span>
-                        </div>
-                        <a href="/${fileName}" download="${file.name}">Download</a>
+                            <a href="/${fileName}" download="${file.name}">Download</a>
+                        </div></span>
                     `;
                     fileList.appendChild(fileElement);
 
@@ -78,20 +88,26 @@
         // Load files when the page loads
         loadFiles();
 
-        // function deleteFiles() {
-        //     fetch('/delete')
-        //     .then(response => response.json())
-        //     .then(files => {
-        //         const fileList = document.getElementById('fileList');
-        //         fileList.innerHTML = '';
-        //         files.forEach(file => {
-        //             if(file.classList.contains('selected')){console.log('delete ', file)}
-        //         });
-        //     })
-        //     .catch(error => console.error('Error:', error));
-        // }
+        function openTab(event, tabName) {
+            // Get all elements with class="tab-content" and hide them
+            var tabContents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].style.display = "none";
+            }
 
-        // document.getElementById('delete-button').addEventListener('click', () => deleteFiles());
+            // Get all elements with class="tab-button" and remove the class "active"
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].className = tabButtons[i].className.replace(" selected", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tabName).style.display = "grid";
+            event.currentTarget.className += " selected";
+        }
+
+
+
         
     </script>
 </body>
