@@ -1,5 +1,6 @@
 body {
-    font-family: 'Public Pixel', sans-serif;
+    /* font-family: 'Public Pixel', sans-serif; */
+    font-family: 'Devin Chavez Font', sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
@@ -17,12 +18,17 @@ h1, h2 {
     color: #ff7cb3;
 }
 
+select{
+    padding: 10px;
+    cursor: pointer;
+}
+
 .upload-section, .download-section, .delete-section {
     margin-bottom: 30px;
 }
 
 .upload-section form{
-    max-width: 400px;
+    max-width: 500px;
     gap: 3px;
 }
 
@@ -68,7 +74,7 @@ h1, h2 {
     padding: 10px;
     cursor: pointer;
     background-color: #ff7cb3;
-
+    width: 15rem;
 }
 
 .tabs .selected{
@@ -81,7 +87,6 @@ h1, h2 {
 
 
 .file-item {
-    display: flex;
     justify-content: space-between;
     align-items: center;
     border: 2px solid #ddd;
@@ -92,17 +97,22 @@ h1, h2 {
     background-color: #ffff;
 }
 
-.file-item:hover {
+/* .file-item:hover {
     background: #e7e7e7;
-}
+} */
 
 .file-options{
     margin: 10px;
+    border-top: 1px solid black;
+    padding: 10px;
+    justify-content: space-between;
+    display: flex;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .file-preview {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     object-fit:contain;
     border-radius: 4px;
     image-rendering: pixelated;
@@ -112,16 +122,20 @@ h1, h2 {
     color: #007BFF;
     text-decoration: none;
     border: 1px solid #6e6e6e;
-    padding:5px;
+    padding: 0 5px 0 5px;
     border-radius: 5px;
 }
 
 .file-item a:hover {
     text-decoration: underline;
-    background-color: #ffa1d0;
+    background-color: #adadad;
 }
 
 .file-item.selected{
     border: 2px solid black;
     background: #e7e7e7;
+}
+
+.file-item span{
+    justify-content: space-evenly;
 }

@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Asset Library</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.cdnfonts.com/css/public-pixel" rel="stylesheet">
+     <link href="https://fonts.cdnfonts.com/css/devin-chavez-font" rel="stylesheet">
+                
 </head>
 <body>
     <div class="container">
@@ -15,12 +16,16 @@
             <h4>Upload a PNG File</h4>
             <form id="uploadForm" enctype="multipart/form-data">
                 <input type="file" id="fileInput" name="file" accept="image/png" required>
+                <select class="category-select">
+                    <option value="sprites">sprite</option>
+                    <option value="spritesheets">spritesheet</option>
+                    <option value="tilesets">tileset</option>
+                    <option value="ui">ui</option>
+                    <option value="assetPacks">asset pack</option>
+                </select>
                 <button type="submit">Upload</button>
             </form>
 
-            <!--<div class="delete-section">
-                <button id="delete-button">Delete</button>
-            </div>-->
         </div>
 
 
@@ -30,11 +35,13 @@
                 <div class="tab-button selected" onclick="openTab(event, 'sprites')">Sprites</div>
                 <div class="tab-button" onclick="openTab(event, 'spritesheets')">Spritesheets</div>
                 <div class="tab-button" onclick="openTab(event, 'tilesets')">Tilesets</div>
+                <div class="tab-button" onclick="openTab(event, 'ui')">UI</div>
                 <div class="tab-button" onclick="openTab(event, 'assetPacks')">Asset Packs</div>
             </div>
             <div id="sprites" class="tab-content"></div>
             <div id="spritesheets" class="tab-content"></div>
             <div id="tilesets" class="tab-content"></div>
+            <div id="ui" class="tab-content"></div>
             <div id="assetPacks" class="tab-content"></div>
         </div>
 
@@ -58,11 +65,28 @@
             .catch(error => console.error('Error:', error));
         });
 
+        // function findCategory(){
+        //     // find which option is selected, get value
+        //     // get the id of the div from .tab-content that equals option selected in dropdown 
+
+        //     let selectedCategory = document.querySelector('.category-select').value;
+
+        //     let tabPages = document.querySelectorAll('.tab-content');
+        //     tabPages.forEach(page => {
+        //         if(page.classList.contains(selectedCategory)){
+        //             console.log('selected ', page)
+        //         }
+        //     });
+
+        // }
+        // findCategory();
+
         function loadFiles() {
             fetch('/files')
             .then(response => response.json())
             .then(files => {
                 const fileList = document.getElementById('sprites');
+                // const fileList = findCategory();
                 fileList.innerHTML = '';
                 files.forEach(file => {
                     // Extract the filename from the path
@@ -109,6 +133,140 @@
 
 
         
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Asset Library</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.cdnfonts.com/css/devin-chavez-font" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Pixel Art by Mary</h1>
+
+        <div class="upload-section">
+            <h4>Upload a PNG File</h4>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <input type="file" id="fileInput" name="file" accept="image/png" required>
+                <select id="categorySelect" name="category" class="category-select">
+                    <option value="sprites">Sprite</option>
+                    <option value="spritesheets">Spritesheet</option>
+                    <option value="tilesets">Tileset</option>
+                    <option value="ui">UI</option>
+                    <option value="assetPacks">Asset Pack</option>
+                </select>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+
+        <div class="download-section">
+            <h3>Download PNG Files:</h3>
+            <div class="tabs">
+                <div class="tab-button selected" onclick="openTab(event, 'sprites')">Sprites</div>
+                <div class="tab-button" onclick="openTab(event, 'spritesheets')">Spritesheets</div>
+                <div class="tab-button" onclick="openTab(event, 'tilesets')">Tilesets</div>
+                <div class="tab-button" onclick="openTab(event, 'ui')">UI</div>
+                <div class="tab-button" onclick="openTab(event, 'assetPacks')">Asset Packs</div>
+            </div>
+            <div id="sprites" class="tab-content"></div>
+            <div id="spritesheets" class="tab-content" style="display: none;"></div>
+            <div id="tilesets" class="tab-content" style="display: none;"></div>
+            <div id="ui" class="tab-content" style="display: none;"></div>
+            <div id="assetPacks" class="tab-content" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData();
+            formData.append('file', document.getElementById('fileInput').files[0]);
+            formData.append('category', document.getElementById('categorySelect').value);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+                loadFiles();
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        function loadFiles() {
+            fetch('/files')
+            .then(response => response.json())
+            .then(files => {
+                // Clear all tab contents
+                const tabContents = document.getElementsByClassName("tab-content");
+                for (var i = 0; i < tabContents.length; i++) {
+                    tabContents[i].innerHTML = '';
+                }
+
+                files.forEach(file => {
+                    // Extract the filename from the path
+                    const fileName = file.path.split('/').pop();
+                    const fileElement = document.createElement('div');
+                    fileElement.className = 'file-item';
+                    fileElement.innerHTML = `
+                        <span>
+                            <img src="/${fileName}" alt="${file.name}" class="file-preview">
+                            <div class="file-options">
+                                <span>${file.name}</span>
+                                <a href="/${fileName}" download="${file.name}">Download</a>
+                            </div>
+                        </span>
+                    `;
+
+                    // Assign a default category if the file category is undefined
+                    const fileCategory = file.category || 'sprites';
+
+                    // Check if the tab element exists
+                    const tabElement = document.getElementById(file.category);
+                    if (tabElement) {
+                        tabElement.appendChild(fileElement);
+                    } else {
+                        console.error(`Tab element with ID '${file.category}' not found.`);
+                    }
+
+                    // Select files
+                    fileElement.addEventListener('click', () => {
+                        fileElement.classList.toggle('selected');
+                    });
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        // Load files when the page loads
+        loadFiles();
+
+        function openTab(event, tabName) {
+            // Get all elements with class="tab-content" and hide them
+            var tabContents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].style.display = "none";
+            }
+
+            // Get all elements with class="tab-button" and remove the class "selected"
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].className = tabButtons[i].className.replace(" selected", "");
+            }
+
+            // Show the current tab, and add a "selected" class to the button that opened the tab
+            document.getElementById(tabName).style.display = "grid";
+            event.currentTarget.className += " selected";
+        }
     </script>
 </body>
 </html>
