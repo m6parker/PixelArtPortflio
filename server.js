@@ -7,12 +7,15 @@ const app = express();
 const upload = multer({ dest: 'uploads/' });
 
 // Serve static files from the 'public' directory
+// Static files are moved into the docker container when building
 app.use(express.static(path.join(__dirname, 'public')));
 // Serve static files from the 'uploads' directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Create SQLite database
-const db = new sqlite3.Database('./files.db', (err) => {
+// inside the docker container /app/files points to the outer ./files.db in 
+// development, /var/www/<something>/files.db in prod.
+const db = new sqlite3.Database('/app/files.db', (err) => {
     if (err) {
         console.error(err.message);
     }
