@@ -1,4 +1,4 @@
-/* /*
+/*
 :root {
   --primary-color: darkseagreen;
   --secondary-color: #779377;
@@ -13,85 +13,12 @@
   --color-4: #eb5d98;
 } 
 
-/* :root{
+:root{
   --primary-color: #e0e0e0;
   --secondary-color: #b6b6b6;
   --color-3: #fff;
   --color-4: #636363;
 } 
-
-
-body {
-    font-family: 'Devin Chavez Font', sans-serif;
-    background-color: var(--primary-color);
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    max-width: 100%;
-    margin: 50px;
-}
-
-h1, h2 {
-    color: var(--color-4);
-}
-
-select{
-    padding: 10px;
-    cursor: pointer;
-}
-
-.upload-section, .download-section, .delete-section {
-    margin-bottom: 30px;
-}
-
-.upload-section form{
-    max-width: 500px;
-    gap: 3px;
-}
-
-.upload-section input[type="file"] {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.upload-section button {
-    padding: 10px;
-    background-color:  var(--primary-color);
-    color: #fff;
-    border: 1px solid var(--color-4);
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.upload-section button:hover {
-    background-color:  var(--primary-color);
-}
-
-.tabs{
-    display: flex;
-    flex-direction: row;
-    user-select: none;
-}
-
-.tabs div{
-    margin: 10px 10px 0 10px;
-    padding: 10px;
-    cursor: pointer;
-    background-color: var(--color-3);;
-    width: 15rem;
-}
-
-.tabs .selected{
-    background-color: var(--color-4);;
-}
-
-.tabs div:hover{
-    color:#6e6e6e;
-}
-
 */
 
 
@@ -143,11 +70,11 @@ select{
     text-decoration: underline;
     background-color: #adadad;
 }
-
+/* 
 .file-item.selected{
     border: 2px solid black;
     background: #e7e7e7;
-}
+} */
 
 .file-item span{
     justify-content: space-evenly;
@@ -248,3 +175,55 @@ form button:hover{
     border: 1px solid black;
 }
 
+.zoom-container{
+    background-color: #ffff;
+    width: 70%;
+    position: absolute;
+    height: 70%;
+    top: 10%;
+    left: 15%;
+    border: 5px solid black;
+    align-items: center;
+    display: flex;
+    z-index: 10;
+    flex-direction: column;
+    opacity: 100%;
+}
+
+.zoom-container .zoomed-img{
+    height: 90%;
+    width: 90%;
+    image-rendering: pixelated;
+    object-fit: contain;
+    position: absolute;
+    bottom: 5px;
+
+}
+
+.zoom-container .preview-text{
+    background-color: black;
+    color: white;
+    padding: 5px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    z-index: 11;
+}
+
+.zoom-container .preview-text:hover{
+    color: #6e6e6e;
+}
+
+.hidden{
+    display: none;
+}
+
+.backdrop{
+    width: 100%;
+    height:100%;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    backdrop-filter: blur(10px);
+}
