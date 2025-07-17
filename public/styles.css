@@ -39,6 +39,7 @@
     flex-direction: column;
     height: 300px;
     background-color: #ffff;
+    border: 2px solid#ffff;
 }
 
 .file-options{
@@ -76,6 +77,11 @@
     background: #e7e7e7;
 } */
 
+.file-item:hover{
+    border: 2px solid black;
+    background: #e7e7e7;
+}
+
 .file-item span{
     justify-content: space-evenly;
 }
@@ -105,21 +111,31 @@ html, body {
 }
 
 .left-menu{
-    cursor: pointer;
     flex-direction: column;
-    height: 50%;
+    height: 100%;
     display: flex;
     width: 250px;
+    user-select: none;
 }
 
 .upload-section{
     background-color: var(--color-2);
-    height: 500px;
+    height: 25%;
     border-radius: 10px;
     position: relative;
     margin-right: 15px;
-    padding: 3px;
     font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex: none;
+    bottom: 10%;
+}
+
+.upload-section .upload-text{
+    text-align: center;
+    padding: 10px;
+    font-size: 13px;
+    background-color: #ac7f6f;
 }
 
 form select, form input, form button{
@@ -161,6 +177,7 @@ form button{
     background-color: var(--color-5);
     padding: 10px;
     border-radius: 5px 0 0 5px;
+    cursor: pointer;
 }
 
 .tabs .selected{
