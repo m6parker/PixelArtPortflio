@@ -44,7 +44,7 @@
                     <button type="submit">Upload</button>
                 </form>
             </div>
-            
+
         </div>
 
         <div class="download-section">
@@ -54,7 +54,16 @@
             <div id="ui" class="tab-content" style="display: none;"></div>
             <div id="assetPacks" class="tab-content" style="display: none;"></div>
         </div>
+
+        <div class="backdrop hidden">
+            <div class="zoom-container">
+                <div class="preview-text">close preview</div>
+                <img class="zoomed-img">
+            </div>
+        </div>
+
     </div>
+
 
     <script>
         document.getElementById('uploadForm').addEventListener('submit', function(event) {
@@ -113,7 +122,7 @@
 
                     // Select files
                     fileElement.addEventListener('click', () => {
-                        fileElement.classList.toggle('selected');
+                        zoomIn(fileElement, fileName);
                     });
                 });
             })
@@ -140,6 +149,17 @@
             document.getElementById(tabName).style.display = "grid";
             event.currentTarget.className += " selected";
         }
+
+        function zoomIn(fileElement, fileName){
+            fileElement.classList.toggle('selected');
+            document.querySelector('.backdrop').classList.remove('hidden');
+            document.querySelector('.zoomed-img').setAttribute('src', fileName);
+
+        }
+
+        document.querySelector('.preview-text').addEventListener('click', ()=> {
+            document.querySelector('.backdrop').classList.add('hidden');
+        });
     </script>
 </body>
 </html>
