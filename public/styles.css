@@ -189,10 +189,9 @@ html, body {
     display: flex;
     width: 250px;
     user-select: none;
-    justify-content: space-between;
 }
 
-.upload-section, .filter-section{
+.upload-section{
     background-color: var(--color-2);
     height: 25%;
     border-radius: 10px;
@@ -202,6 +201,7 @@ html, body {
     display: flex;
     flex-direction: column;
     flex: none;
+    bottom: 10%;
 }
 
 .upload-section .upload-text{
@@ -224,16 +224,8 @@ form button{
     font-family: 'Devin Chavez Font', sans-serif;
     bottom: 0;
     position: absolute;
+    bottom: 0;
     left: 0;
-}
-
-.filter-section{
-    padding: 5px;
-    height: 70px;
-}
-
-.filter-section input{
-    padding: 10px;
 }
 
 .download-section{
@@ -245,7 +237,7 @@ form button{
 }
 
 .tabs{
-    height: 30%;
+    height: 100%;
 
 }
 
