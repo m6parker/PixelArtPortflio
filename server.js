@@ -15,7 +15,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Create SQLite database
 // inside the docker container /app/files points to the outer ./files.db in 
 // development, /var/www/<something>/files.db in prod.
-const db = new sqlite3.Database('/app/files.db', (err) => {
+const db = new sqlite3.Database('./files.db', (err) => {
     if (err) {
         console.error(err.message);
     }
